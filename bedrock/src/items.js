@@ -16,7 +16,8 @@ module.exports = async (version, outputPath) => {
 
   const javaItems = require(`./deps/minecraft-data/data/${latest.blocks}/items.json`)
 
-  const itemstates = require(`${outputPath}/packets/start_game.json`).itemstates
+  //const itemstates = require(`${outputPath}/packets/start_game.json`).itemstates
+  const itemstates = require(`./deps/bedrock-protocol/data/${version}/sample/packets/start_game.json`).itemstates
 
   console.log(bedrock2Java)
 

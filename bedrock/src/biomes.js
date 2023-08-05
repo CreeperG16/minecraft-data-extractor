@@ -3,7 +3,8 @@ const nbt = require('prismarine-nbt')
 const strip = k => k.replace('minecraft:', '').split('[')[0]
 
 module.exports = (version, outputPath) => {
-  const biomes = nbt.simplify(require(`${outputPath}/packets/biome_definition_list.json`).nbt)
+  //const biomes = nbt.simplify(require(`${outputPath}/packets/biome_definition_list.json`).nbt)
+  const biomes = nbt.simplify(require(`./deps/bedrock-protocol/data/${version}/sample/packets/biome_definition_list.json`).nbt)
   // console.log('Biomes', biomes)
 
   const bedrockBiomeIds = require(`${outputPath}/biome/Biomes.json`)

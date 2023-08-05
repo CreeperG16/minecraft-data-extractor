@@ -165,6 +165,6 @@ module.exports = (version, outputPath) => {
     }
   }
 
-  fs.writeFileSync(outputPath + '/entities.json', JSON.stringify(mobs, null, 2))
+  fs.writeFileSync(outputPath + '/entities.json', JSON.stringify(Object.values(mobs), null, 2))
 }
 if (!module.parent) module.exports(null, 'output')

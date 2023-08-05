@@ -13,7 +13,8 @@ class ItemMapper {
     this.b2j = {}
 
     try {
-      this.packet = require(`${outDir}/packets/start_game.json`)
+      //this.packet = require(`${outDir}/packets/start_game.json`)
+      this.packet = require(`./deps/bedrock-protocol/data/${version}/sample/packets/start_game.json`)
     } catch (e) {
       console.log(e)
       throw Error('You need to dump the packets first, please see the README.md file')
@@ -52,9 +53,10 @@ class ItemMapper {
     await this.buildJ2B()
     await this.buildB2J()
 
-    fs.mkdirSync(this.outDir + '/items/', { recursive: true })
-    fs.writeFileSync(this.outDir + '/items/Java2Bedrock.json', JSON.stringify(this.j2b, null, 2))
-    fs.writeFileSync(this.outDir + '/items/Bedrock2Java.json', JSON.stringify(this.b2j, null, 2))
+    await fs.promises.mkdir(this.outDir + '/items/', { recursive: true })
+    console.log(this.j2b, this.b2j)
+    await fs.promises.writeFile(this.outDir + '/items/Java2Bedrock.json', JSON.stringify(this.j2b, null, 2))
+    await fs.promises.writeFile(this.outDir + '/items/Bedrock2Java.json', JSON.stringify(this.b2j, null, 2))
   }
 }
 

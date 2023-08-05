@@ -10,12 +10,17 @@ function updateSubmodules() {
   if (!fs.existsSync(join(__dirname, 'deps', 'PyMCTCompiler'))) cp.execSync('git clone https://github.com/gentlegiantJGC/PyMCTCompiler', { cwd })
   if (!fs.existsSync(join(__dirname, 'deps', 'PyMCTranslate'))) cp.execSync('git clone https://github.com/gentlegiantJGC/PyMCTranslate --depth 1', { cwd })
   if (!fs.existsSync(join(__dirname, 'deps', 'mappings-generator'))) cp.execSync('git clone https://github.com/GeyserMC/mappings-generator', { cwd })
+
+  if (!fs.existsSync(join(__dirname, 'deps', 'bedrock-protocol'))) cp.execSync('git clone https://github.com/PrismarineJS/bedrock-protocol', { cwd })
+
   cp.execSync('cd minecraft-data && git pull', { cwd })
   cp.execSync('cd BedrockData && git pull && git log --all --oneline --decorate > log.txt', { cwd })
   cp.execSync('cd mappings && git pull && git log --all --oneline --decorate > log.txt', { cwd })
   cp.execSync('cd PyMCTCompiler && git pull && git log --all --oneline --decorate > log.txt', { cwd })
   cp.execSync('cd PyMCTranslate && git pull && git log --all --oneline --decorate > log.txt', { cwd })
   cp.execSync('cd mappings-generator && git pull && git log --all --oneline --decorate > log.txt', { cwd })
+
+  cp.execSync('cd bedrock-protocol && git pull', { cwd })
 
   for (const dep of ['BedrockData', 'mappings', 'PyMCTranslate', 'PyMCTCompiler', 'mappings-generator']) {
     const e = fs.readFileSync(join(__dirname, 'deps', dep, 'log.txt'), 'utf-8')
